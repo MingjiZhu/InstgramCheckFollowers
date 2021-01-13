@@ -26,20 +26,3 @@ def home():
     not_follow_you_back = [x for x in followings if x not in followers]
     return jsonify(not_follow_you_back)
     
-
-@app.route("/hello/")
-@app.route("/hello/<name>")
-def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
-
-    # restrict to safe characters only
-    match_object = re.match("[a-zA-Z]+", name)
-
-    if match_object:
-        clean_name = match_object.group(0)
-    else:
-        clean_name = "Friend"
-    
-    content = "Hello there, " + clean_name + "! It is " + formatted_now
-    return content
